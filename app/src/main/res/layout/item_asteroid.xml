@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="asteroid"
+            type="com.mehedi.asteroidradar.Asteroid" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp">
+
+        <TextView
+            android:id="@+id/tvCodenameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/codename"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvCodename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{asteroid.codename}"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/tvCodenameLabel"
+            app:layout_constraintTop_toTopOf="@id/tvCodenameLabel" />
+
+        <TextView
+            android:id="@+id/tvCloseApproachDateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/close_approach_date"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tvCodenameLabel"
+            app:layout_constraintTop_toBottomOf="@id/tvCodenameLabel" />
+
+        <TextView
+            android:text="@{asteroid.closeApproachDate}"
+            android:id="@+id/tvCloseApproachDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/tvCloseApproachDateLabel"
+            app:layout_constraintTop_toTopOf="@id/tvCloseApproachDateLabel" />
+
+        <TextView
+            android:id="@+id/tvAbsoluteMagnitudeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/absolute_magnitude"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tvCodenameLabel"
+            app:layout_constraintTop_toBottomOf="@id/tvCloseApproachDateLabel" />
+
+        <TextView
+            android:text="@{@string/display_double(asteroid.absoluteMagnitude)}"
+            android:id="@+id/tvAbsoluteMagnitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/tvAbsoluteMagnitudeLabel"
+            app:layout_constraintTop_toTopOf="@id/tvAbsoluteMagnitudeLabel" />
+
+        <TextView
+            android:id="@+id/tvEstimatedDiameterLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/estimated_diameter"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tvCodenameLabel"
+            app:layout_constraintTop_toBottomOf="@id/tvAbsoluteMagnitudeLabel" />
+
+        <TextView
+            android:text="@{@string/display_double(asteroid.estimatedDiameter)}"
+            android:id="@+id/tvEstimatedDiameter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/tvEstimatedDiameterLabel"
+            app:layout_constraintTop_toTopOf="@id/tvEstimatedDiameterLabel" />
+
+        <TextView
+            android:id="@+id/tvRelativeVelocityLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/relative_velocity"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tvCodenameLabel"
+            app:layout_constraintTop_toBottomOf="@id/tvEstimatedDiameterLabel" />
+
+        <TextView
+            android:id="@+id/tvRelativeVelocity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/tvRelativeVelocityLabel"
+            app:layout_constraintTop_toTopOf="@id/tvRelativeVelocityLabel" />
+
+        <TextView
+            android:id="@+id/tvDistanceFromEarthLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/distance_from_earth"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tvCodenameLabel"
+            app:layout_constraintTop_toBottomOf="@id/tvRelativeVelocityLabel" />
+
+        <TextView
+            android:id="@+id/tvDistanceFromEarth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/tvDistanceFromEarthLabel"
+            app:layout_constraintTop_toTopOf="@id/tvDistanceFromEarthLabel" />
+
+        <TextView
+            android:id="@+id/tvIsPotentiallyHazardousLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/potentially_hazardous"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tvCodenameLabel"
+            app:layout_constraintTop_toBottomOf="@id/tvDistanceFromEarthLabel" />
+
+        <TextView
+            android:id="@+id/tvIsPotentiallyHazardous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/tvIsPotentiallyHazardousLabel"
+            app:layout_constraintTop_toTopOf="@id/tvIsPotentiallyHazardousLabel" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
