@@ -46,6 +46,7 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
 @BindingAdapter("setImage")
 fun setUrlImage(view: ImageView, image: PictureOfDay?) {
     image?.let {
+        view.contentDescription= image.title
         Picasso.with(view.context).load(image.url).into(view)
     }
 }
