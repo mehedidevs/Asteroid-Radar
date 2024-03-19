@@ -11,6 +11,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.mehedi.asteroidradar.Asteroid
 import com.mehedi.asteroidradar.PictureOfDay
+import com.mehedi.asteroidradar.today
 
 
 @Dao
@@ -33,7 +34,7 @@ interface AsteroidDao {
     fun insertAll(asteroid: List<Asteroid>)
 
     @Query("SELECT * FROM asteroid_table WHERE closeApproachDate >= :today ORDER BY closeApproachDate ASC")
-    suspend fun getAsteroidsFromToday(today: String = java.util.Date().toString()): List<Asteroid>
+    fun getAsteroidsFromToday(today: String = today()): LiveData<List<Asteroid>>
 
     @Query("DELETE FROM asteroid_table WHERE closeApproachDate < :today")
     suspend fun deleteAsteroidsBefore(today: String)

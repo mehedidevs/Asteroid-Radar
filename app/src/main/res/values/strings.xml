@@ -27,4 +27,5 @@
     <string name="distance_from_earth">Distance From Earth: </string>
     <string name="potentially_hazardous">Potentially Hazardous: </string>
     <string name="display_double">$%,.0f</string>
+    <string name="help_button">help button</string>
 </resources>

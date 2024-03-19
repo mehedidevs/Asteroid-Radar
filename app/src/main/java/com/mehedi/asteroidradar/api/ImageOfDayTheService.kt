@@ -24,11 +24,9 @@ private val moshi = Moshi.Builder()
 
 
 object Network {
-    // Configure retrofit to parse JSON and use coroutines
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
-
     val iotdService: ImageOfDayTheService = retrofit.create(ImageOfDayTheService::class.java)
 }

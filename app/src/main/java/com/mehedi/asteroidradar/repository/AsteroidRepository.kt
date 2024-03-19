@@ -4,13 +4,11 @@ import com.mehedi.asteroidradar.api.AsteroidNetwork
 import com.mehedi.asteroidradar.api.Network
 import com.mehedi.asteroidradar.api.parseAsteroidsJsonResult
 import com.mehedi.asteroidradar.database.AsteroidDatabase
+import com.mehedi.asteroidradar.today
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import timber.log.Timber
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 class AsteroidRepository(private val database: AsteroidDatabase) {
 
@@ -25,20 +23,15 @@ class AsteroidRepository(private val database: AsteroidDatabase) {
                 data?.let {
                     database.imageOfTheDayDao.insert(it)
                 }
-
-                Timber.d("data : $data")
-
-
             } catch (e: Exception) {
-                Timber.d("error : ${e.message} ")
+                Timber.d("${e.message}")
             }
 
         }
 
     }
 
-    val getAsteroid = database.asteroidDao.getAsteroid()
-
+    val getAsteroid = database.asteroidDao.getAsteroidsFromToday()
     suspend fun refreshAsteroid() {
         withContext(Dispatchers.IO) {
             try {
@@ -47,13 +40,11 @@ class AsteroidRepository(private val database: AsteroidDatabase) {
                     data.body()?.let { asteroidResponse ->
                         val jsonObject = JSONObject(asteroidResponse)
                         val asteroidList = parseAsteroidsJsonResult(jsonObject)
-
                         database.asteroidDao.insertAll(asteroidList)
-
                     }
                 }
             } catch (e: Exception) {
-                Timber.d("error ${e.message}")
+                Timber.d("${e.message}")
             }
         }
 
@@ -61,9 +52,7 @@ class AsteroidRepository(private val database: AsteroidDatabase) {
     }
 
     suspend fun deleteAsteroidsBeforeToday() {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-        val today = dateFormat.format(Date()) // Get today's date as a string
-        database.asteroidDao.deleteAsteroidsBefore(today)
+        database.asteroidDao.deleteAsteroidsBefore(today())
     }
 
 

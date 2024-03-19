@@ -54,9 +54,7 @@ class AsteroidAdapter(private val asteroidListener: AsteroidListener) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AsteroidViewHolder {
-
         return AsteroidViewHolder.from(parent)
-
     }
 
 

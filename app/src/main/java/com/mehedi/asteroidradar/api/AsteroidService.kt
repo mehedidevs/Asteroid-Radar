@@ -2,6 +2,8 @@ package com.mehedi.asteroidradar.api
 
 import com.mehedi.asteroidradar.Constants.API_KEY
 import com.mehedi.asteroidradar.Constants.BASE_URL
+import com.mehedi.asteroidradar.seventhDay
+import com.mehedi.asteroidradar.today
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
@@ -13,8 +15,8 @@ interface AsteroidService {
 
     @GET("neo/rest/v1/feed")
     suspend fun getAsteroid(
-        @Query("start_date") startDate: String = "2024-03-18",
-        @Query("end_date") endDate: String = "2024-03-23",
+        @Query("start_date") startDate: String = today(),
+        @Query("end_date") endDate: String = seventhDay(),
         @Query("api_key") apiKey: String = API_KEY
     ): Response<String>
 }

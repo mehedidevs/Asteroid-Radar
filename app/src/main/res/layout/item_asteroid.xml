@@ -24,7 +24,7 @@
 
             <TextView
                 android:id="@+id/tvCloseApproachDateLabel"
-                style="@style/asteroid_text_style"
+                style="@style/asteroid_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/close_approach_date"
@@ -34,7 +34,7 @@
             <TextView
                 android:layout_marginStart="@dimen/view_margin"
                 android:id="@+id/tvCloseApproachDate"
-                style="@style/asteroid_text_style"
+                style="@style/asteroid_value_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{asteroid.closeApproachDate}"
@@ -43,7 +43,7 @@
 
             <TextView
                 android:id="@+id/tvAbsoluteMagnitudeLabel"
-                style="@style/asteroid_text_style"
+                style="@style/asteroid_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/view_margin"
@@ -54,7 +54,7 @@
             <TextView
                 android:layout_marginStart="@dimen/view_margin"
                 android:id="@+id/tvAbsoluteMagnitude"
-                style="@style/asteroid_text_style"
+                style="@style/asteroid_value_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:astronomicalUnitText="@{asteroid.absoluteMagnitude}"
@@ -63,7 +63,7 @@
 
             <TextView
                 android:id="@+id/tvEstimatedDiameterLabel"
-                style="@style/asteroid_text_style"
+                style="@style/asteroid_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/view_margin"
@@ -75,7 +75,7 @@
             <TextView
                 android:layout_marginStart="@dimen/view_margin"
                 android:id="@+id/tvEstimatedDiameter"
-                style="@style/asteroid_text_style"
+                style="@style/asteroid_value_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:kmUnitText="@{asteroid.estimatedDiameter}"
@@ -85,7 +85,7 @@
             <TextView
 
                 android:id="@+id/tvRelativeVelocityLabel"
-                style="@style/asteroid_text_style"
+                style="@style/asteroid_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/view_margin"
@@ -96,7 +96,7 @@
             <TextView
                 android:layout_marginStart="@dimen/view_margin"
                 android:id="@+id/tvRelativeVelocity"
-                style="@style/asteroid_text_style"
+                style="@style/asteroid_value_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/tvRelativeVelocityLabel"
@@ -105,7 +105,7 @@
 
             <TextView
                 android:id="@+id/tvDistanceFromEarthLabel"
-                style="@style/asteroid_text_style"
+                style="@style/asteroid_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/view_margin"
@@ -116,7 +116,7 @@
             <TextView
                 android:layout_marginStart="@dimen/view_margin"
                 android:id="@+id/tvDistanceFromEarth"
-                style="@style/asteroid_text_style"
+                style="@style/asteroid_value_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:astronomicalUnitText="@{asteroid.distanceFromEarth}"

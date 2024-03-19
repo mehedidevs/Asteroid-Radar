@@ -2,13 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
-
         <variable
             name="viewModel"
             type="com.mehedi.asteroidradar.main.MainViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,13 +34,8 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="#55010613"
-                android:padding="16dp"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:setTitle="@{viewModel.imageOfTheDay()}" />
+                app:setTitle="@{viewModel.imageOfTheDay()}"
+                style="@style/asteroid_large_title" />
         </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
