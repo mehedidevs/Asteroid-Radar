@@ -19,6 +19,14 @@ interface AsteroidService {
         @Query("end_date") endDate: String = seventhDay(),
         @Query("api_key") apiKey: String = API_KEY
     ): Response<String>
+
+    @GET("neo/rest/v1/feed")
+    suspend fun getTodayAsteroid(
+        @Query("start_date") startDate: String = today(),
+        @Query("end_date") endDate: String = today(),
+        @Query("api_key") apiKey: String = API_KEY
+    ): Response<String>
+
 }
 
 

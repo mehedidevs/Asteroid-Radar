@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.mehedi.asteroidradar.AsteroidFilter
 import com.mehedi.asteroidradar.database.getDatabase
 import com.mehedi.asteroidradar.repository.AsteroidRepository
 import kotlinx.coroutines.launch
@@ -28,7 +29,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun imageOfTheDay() = asteroidRepository.getImageOfTheDay
 
-    fun getSteroid() = asteroidRepository.getAsteroid
+    fun getAsteroid(filter: AsteroidFilter) = asteroidRepository.getAsteroid(filter)
 
 
     class Factory(val app: Application) : ViewModelProvider.Factory {

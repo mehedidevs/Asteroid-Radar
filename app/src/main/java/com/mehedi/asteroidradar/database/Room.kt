@@ -11,6 +11,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.mehedi.asteroidradar.Asteroid
 import com.mehedi.asteroidradar.PictureOfDay
+import com.mehedi.asteroidradar.seventhDay
 import com.mehedi.asteroidradar.today
 
 
@@ -27,14 +28,21 @@ interface ImageDao {
 @Dao
 interface AsteroidDao {
 
-    @Query("select * from asteroid_table")
-    fun getAsteroid(): LiveData<List<Asteroid>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(asteroid: List<Asteroid>)
 
-    @Query("SELECT * FROM asteroid_table WHERE closeApproachDate >= :today ORDER BY closeApproachDate ASC")
+    @Query("select * from asteroid_table ORDER BY closeApproachDate ASC")
+    fun getAllSavedAsteroid(): LiveData<List<Asteroid>>
+
+    @Query("SELECT * FROM asteroid_table WHERE closeApproachDate = :today ORDER BY closeApproachDate ASC")
     fun getAsteroidsFromToday(today: String = today()): LiveData<List<Asteroid>>
+
+    @Query("SELECT * FROM asteroid_table WHERE closeApproachDate BETWEEN :startDate AND :endDate ORDER BY closeApproachDate ASC")
+    fun getAsteroidsForNext7Days(
+        startDate: String = today(),
+        endDate: String = seventhDay()
+    ): LiveData<List<Asteroid>>
 
     @Query("DELETE FROM asteroid_table WHERE closeApproachDate < :today")
     suspend fun deleteAsteroidsBefore(today: String)

@@ -1,5 +1,8 @@
 package com.mehedi.asteroidradar.repository
 
+import androidx.lifecycle.LiveData
+import com.mehedi.asteroidradar.Asteroid
+import com.mehedi.asteroidradar.AsteroidFilter
 import com.mehedi.asteroidradar.api.AsteroidNetwork
 import com.mehedi.asteroidradar.api.Network
 import com.mehedi.asteroidradar.api.parseAsteroidsJsonResult
@@ -31,7 +34,24 @@ class AsteroidRepository(private val database: AsteroidDatabase) {
 
     }
 
-    val getAsteroid = database.asteroidDao.getAsteroidsFromToday()
+    fun getAsteroid(filter: AsteroidFilter): LiveData<List<Asteroid>> {
+
+      return  when (filter) {
+            AsteroidFilter.SHOW_SAVED ->
+                database.asteroidDao.getAllSavedAsteroid()
+
+            AsteroidFilter.SHOW_WEEK ->
+                database.asteroidDao.getAsteroidsForNext7Days()
+
+            AsteroidFilter.SHOW_TODAY ->
+                database.asteroidDao.getAsteroidsFromToday()
+        }
+
+
+
+
+    }
+
     suspend fun refreshAsteroid() {
         withContext(Dispatchers.IO) {
             try {

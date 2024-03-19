@@ -1,10 +1,5 @@
 package com.mehedi.asteroidradar
 
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
-import java.util.Locale
-
 object Constants {
     const val API_QUERY_DATE_FORMAT = "YYYY-MM-dd"
     const val DEFAULT_END_DATE_DAYS = 7
@@ -13,4 +8,10 @@ object Constants {
     const val DATABASE_DATE_FORMAT = "yyyy-MM-dd"
 
 
+}
+
+enum class AsteroidFilter(val value: String) {
+    SHOW_SAVED("saved"), SHOW_WEEK("seven_days"), SHOW_TODAY(
+        "today"
+    )
 }
