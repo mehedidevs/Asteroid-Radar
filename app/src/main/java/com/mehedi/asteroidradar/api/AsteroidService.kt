@@ -1,7 +1,7 @@
 package com.mehedi.asteroidradar.api
 
-
-import org.json.JSONObject
+import com.mehedi.asteroidradar.Constants.API_KEY
+import com.mehedi.asteroidradar.Constants.BASE_URL
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
@@ -11,12 +11,7 @@ import retrofit2.http.Query
 
 interface AsteroidService {
 
-    companion object {
-        const val API_KEY = "PyxeHF9sEcFlxle718SmfeUmU2pFFUbDa64AObpQ"
-    }
-
-    //start_date=2015-09-07&end_date=2015-09-08&api_key=DEMO_KEY
-    @GET("feed")
+    @GET("neo/rest/v1/feed")
     suspend fun getAsteroid(
         @Query("start_date") startDate: String = "2024-03-18",
         @Query("end_date") endDate: String = "2024-03-23",
@@ -26,9 +21,8 @@ interface AsteroidService {
 
 
 object AsteroidNetwork {
-    // Configure retrofit to parse JSON and use coroutines
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://api.nasa.gov/neo/rest/v1/")
+        .baseUrl(BASE_URL)
         .addConverterFactory(ScalarsConverterFactory.create())
         .build()
 

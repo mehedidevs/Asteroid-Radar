@@ -2,15 +2,18 @@ package com.mehedi.asteroidradar.repository
 
 import com.mehedi.asteroidradar.api.AsteroidNetwork
 import com.mehedi.asteroidradar.api.Network
-import com.mehedi.asteroidradar.api.asDatabaseImage
 import com.mehedi.asteroidradar.api.parseAsteroidsJsonResult
 import com.mehedi.asteroidradar.database.AsteroidDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class AsteroidRepository(private val database: AsteroidDatabase) {
+
 
     val getImageOfTheDay = database.imageOfTheDayDao.getImageOfTheDay()
 
@@ -19,7 +22,7 @@ class AsteroidRepository(private val database: AsteroidDatabase) {
         withContext(Dispatchers.IO) {
             try {
                 val data = Network.iotdService.getImageOFTheDay().body()
-                data?.asDatabaseImage()?.let {
+                data?.let {
                     database.imageOfTheDayDao.insert(it)
                 }
 
@@ -55,6 +58,12 @@ class AsteroidRepository(private val database: AsteroidDatabase) {
         }
 
 
+    }
+
+    suspend fun deleteAsteroidsBeforeToday() {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+        val today = dateFormat.format(Date()) // Get today's date as a string
+        database.asteroidDao.deleteAsteroidsBefore(today)
     }
 
 

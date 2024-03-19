@@ -3,8 +3,6 @@ package com.mehedi.asteroidradar
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.mehedi.asteroidradar.database.DatabaseImage
-import com.mehedi.asteroidradar.domain.Image
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("statusIcon")
@@ -44,9 +42,16 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
 }
 
 @BindingAdapter("setImage")
-fun setUrlImage(view: ImageView, image: DatabaseImage?) {
+fun setUrlImage(view: ImageView, image: PictureOfDay?) {
     image?.let {
         Picasso.with(view.context).load(image.url).into(view)
+    }
+}
+
+@BindingAdapter("setTitle")
+fun setTitleToImage(view: TextView, image: PictureOfDay?) {
+    image?.let {
+        view.text = image.title
     }
 }
 

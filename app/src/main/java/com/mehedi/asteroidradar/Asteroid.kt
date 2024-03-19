@@ -19,3 +19,4 @@ data class Asteroid(
     val distanceFromEarth: Double,
     val isPotentiallyHazardous: Boolean
 ) : Parcelable
+

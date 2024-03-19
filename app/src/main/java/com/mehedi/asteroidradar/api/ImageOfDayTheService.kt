@@ -1,6 +1,9 @@
 package com.mehedi.asteroidradar.api
 
 
+import com.mehedi.asteroidradar.Constants.API_KEY
+import com.mehedi.asteroidradar.Constants.BASE_URL
+import com.mehedi.asteroidradar.PictureOfDay
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Response
@@ -11,12 +14,8 @@ import retrofit2.http.Query
 
 
 interface ImageOfDayTheService {
-    companion object {
-        const val API_KEY = "PyxeHF9sEcFlxle718SmfeUmU2pFFUbDa64AObpQ"
-    }
-
     @GET("planetary/apod")
-    suspend fun getImageOFTheDay(@Query("api_key") apiKey: String = API_KEY): Response<NetworkImage>
+    suspend fun getImageOFTheDay(@Query("api_key") apiKey: String = API_KEY): Response<PictureOfDay>
 }
 
 private val moshi = Moshi.Builder()
@@ -27,7 +26,7 @@ private val moshi = Moshi.Builder()
 object Network {
     // Configure retrofit to parse JSON and use coroutines
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://api.nasa.gov/")
+        .baseUrl(BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 

@@ -10,16 +10,19 @@ import androidx.room.Query
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.mehedi.asteroidradar.Asteroid
+import com.mehedi.asteroidradar.PictureOfDay
+
 
 @Dao
 interface ImageDao {
-
-    @Query("select * from databaseimage")
-    fun getImageOfTheDay(): LiveData<DatabaseImage>
+    @Query("select * from picture_of_the_day_title ")
+    fun getImageOfTheDay(): LiveData<PictureOfDay>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(image: DatabaseImage)
+    fun insert(image: PictureOfDay)
 }
+
+
 @Dao
 interface AsteroidDao {
 
@@ -27,16 +30,24 @@ interface AsteroidDao {
     fun getAsteroid(): LiveData<List<Asteroid>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll( asteroid: List<Asteroid>)
+    fun insertAll(asteroid: List<Asteroid>)
+
+    @Query("SELECT * FROM asteroid_table WHERE closeApproachDate >= :today ORDER BY closeApproachDate ASC")
+    suspend fun getAsteroidsFromToday(today: String = java.util.Date().toString()): List<Asteroid>
+
+    @Query("DELETE FROM asteroid_table WHERE closeApproachDate < :today")
+    suspend fun deleteAsteroidsBefore(today: String)
+
 
 }
 
-@Database(entities = [DatabaseImage::class, Asteroid::class], version = 1)
+@Database(entities = [PictureOfDay::class, Asteroid::class], version = 1)
 abstract class AsteroidDatabase : RoomDatabase() {
     abstract val imageOfTheDayDao: ImageDao
     abstract val asteroidDao: AsteroidDao
 }
 
+@Volatile
 private lateinit var INSTANCE: AsteroidDatabase
 
 fun getDatabase(context: Context): AsteroidDatabase {
